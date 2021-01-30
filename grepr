@@ -1,3 +1,3 @@
 #!/bin/bash
 
-grep -Rnw "$1" -e "$2"
+grep --color=always -Rnw "$1" -e "$2"
