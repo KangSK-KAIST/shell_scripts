@@ -1,0 +1,3 @@
+#!/bin/bash
+
+grep -Rnw "$1" -e "$2"
