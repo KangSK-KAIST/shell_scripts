@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# inputfile outputfile encoding_from encoding_to
+
+while :
+do
+	# iconv -f CP949 -t UTF-8 rchobby_euc_kr_skip.sql > rchobby_utf8_skip.sql 2> RAW_RESULT
+	iconv -f $3 -t $4 $1 > $2 2> RAW_RESULT
+	cat RAW_RESULT
+	NUMBER=`gawk '{print $7}' RAW_RESULT`
+	if [ -z "$NUMBER" ]
+	then
+		break
+	else
+		echo $NUMBER
+		printf '?' | dd bs=1 conv=notrunc of=$1 seek=$NUMBER
+	fi
+done
+rm RAW_RESULT; echo "Done."
